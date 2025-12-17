@@ -35,7 +35,7 @@ public class AwsSecretsManagerConfig {
         String secretString = resp.secretString();
 
         Map<String, String> creds = new ObjectMapper().readValue(secretString, Map.class);
-        System.out.println("Kedar: " + creds);
+
         HikariDataSource ds = new HikariDataSource();
         ds.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s", creds.get("host"), creds.get("port"), "big-app"));
         ds.setUsername(creds.get("username"));
